@@ -21,6 +21,8 @@ Route::get('finishquiz',[UserController::class,'finishquiz'])->name('finishquiz'
 Route::get('my_quizzes',[UserController::class,'my_quizzes']);
 Route::get('/search', [UserController::class, 'search'])->name('search');
 Route::post('searchquiz', [UserController::class, 'searchquiz']);
+Route::get('/continue/{id}', [UserController::class, 'continue']);
+Route::get('/clear_my_history', [UserController::class, 'clear_my_history']);
 
 // ---------------------------------------------
 // -------------------Admin--------------------------

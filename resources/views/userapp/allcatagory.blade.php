@@ -6,7 +6,7 @@
     cursor: pointer;
     width: 150px;
     height: 150px;
-    font-weight:600;
+    font-weight: 600;
     /* padding:10px; */
 }
 
@@ -19,7 +19,6 @@
 .card-style:hover {
     transform: scale(1.1);
     box-shadow: 1px 1px 7px #a4a0ff;
-
 }
 
 
@@ -32,21 +31,24 @@
     justify-content: center;
     align-items: center;
 }
-.allcatagory-box{ }
-.aero{
+
+.allcatagory-box {}
+
+.aero {
     position: absolute;
-    top:0;
-    right:0;
+    top: 0;
+    right: 0;
     width: 30px;
     height: 30px;
-    background-color: gray;
+    background-color: #a4a0ff;
     border-radius: 0px 5px 0px 10px;
     display: none;
     font-size: 12px;
     color: white;
 }
-.card-style:hover .aero{
-    display:flex;
+
+.card-style:hover .aero {
+    display: flex;
 }
 
 @media screen and (max-width:700px) {
@@ -54,9 +56,10 @@
         width: 100px;
         height: 100px;
     }
-    .aero{
+
+    .aero {
         height: 20px;
-        width:20px;
+        width: 20px;
         font-size: 8px;
         border-radius: 0px 5px 0px 5px;
     }
@@ -69,9 +72,10 @@
         font-size: 6px;
         padding: 5px !important;
     }
-    .aero{
+
+    .aero {
         height: 10px;
-        width:10px;
+        width: 10px;
         font-size: 6px;
         border-radius: 0px 5px 0px 5px;
     }
@@ -90,8 +94,8 @@
             <a href="/cat_quizzes/{{$cat->id}}" class="text-decoration-none">
                 <div class="card card-style allcatagory-box center text-center">
                     <!-- <img src="{{ asset('imgs/1.png') }}" alt=""> -->
-                     <span class="aero center"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-                     <div class="allcatagory-div">{{$cat->catagory}}</div>
+                    <span class="aero center"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    <div class="allcatagory-div">{{$cat->catagory}}</div>
                 </div>
             </a>
             @endforeach

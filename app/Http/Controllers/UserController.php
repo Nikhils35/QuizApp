@@ -221,16 +221,50 @@ class UserController extends Controller
         }else{
             $valid=$req->validate([
                 'inp'=>'required'
-            ]);
-            $data=$req->inp;
-            $quizzes = Quiz::where('quiz', 'LIKE', '%' . $data . '%')
-                    //  ->orWhere('email', 'LIKE', '%' . $searchText . '%')
-                     ->limit(50)
-                     ->get();
-
-            // return view('search-result', compact('users', 'searchText'));
-            return view('userapp/quizzes',['quizzes'=>$quizzes]);
-        }
+                ]);
+                $data=$req->inp;
+                $quizzes = Quiz::where('quiz', 'LIKE', '%' . $data . '%')
+                //  ->orWhere('email', 'LIKE', '%' . $searchText . '%')
+                ->limit(50)
+                ->get();
+                
+                // return view('search-result', compact('users', 'searchText'));
+                return view('userapp/quizzes',['quizzes'=>$quizzes]);
+                }
+    }
+                
+    function continue($record_id){
+                if(!Session::has('user')){
+                    return redirect('login');
+                }else{
+                    $quizid=Record::where('id',$record_id)->get('quiz_id');
+                    $quizid=$quizid[0]->quiz_id;
+                    $mcqs=Mcq::where('quiz_id',$quizid)->get();
+                    $mcq_records=Mcq_record::WithMcq()->where('record_id',$record_id)->get();
+                    $total_mcqs=count($mcq_records);
+                    Session::put([
+                    'record_id'=>$record_id,
+                    'mcqs' => $mcqs,
+                    'current' => $total_mcqs
+                    ]);
+                    // $cat=Catagory::where('id',$cat_id)->first();
+                    return redirect()->route('show.mcqs');
+                }
     }
 
+    function clear_my_history(){
+                if(!Session::has('user')){
+                    return redirect('login');
+                }else{
+                    $user=Session::get('user');
+                    $user_id=$user->id;
+                    $query=Record::where('user_id',$user_id)->delete();
+                    $query2=Mcq_record::where('user_id',$user_id)->delete();
+                    if($query && $query2){
+                        return redirect('my_quizzes');
+                    }else{
+                        return redirect('my_quizzes');
+                    }
+                }
+    }
 }
