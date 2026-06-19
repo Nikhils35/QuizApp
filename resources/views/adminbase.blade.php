@@ -21,7 +21,7 @@
 
     <div class="admin-sidebar">
         <h2>Admin Panel</h2>
-        <a href="/admindash">Dashboard</a>
+        
         @if(session('admin.role')=='Owner')
         <a href="/users">Users</a>
         @endif
@@ -46,6 +46,7 @@
     </div>
     </div>
     
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script>

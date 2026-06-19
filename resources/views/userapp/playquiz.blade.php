@@ -92,25 +92,25 @@
         @error('option')
             <div class="text-danger mb-2">{{ $message }}</div>
         @enderror
-        <label class="opt-div border border-gray p-2 mb-2 icon-radio">
+        <label id="a" class="opt-div border border-gray p-2 mb-2 icon-radio">
             <span class="pe-2 span-1 text-black">A.</span>
             <span style="font-weight:500">{{$mcqs->a}}</span>
             <input type="radio" name="option" value="a" class="options">
             <i class="fa fa-circle-check"></i>
         </label>
-        <label class="opt-div border border-gray p-2 mb-2 icon-radio">
+        <label id="b" class="opt-div border border-gray p-2 mb-2 icon-radio">
             <span class="pe-2 span-1 text-black">B.</span>
             <span style="font-weight:500">{{$mcqs->b}}</span>
             <input type="radio" name="option" value="b" class="options">
             <i class="fa fa-circle-check"></i>
         </label>
-        <label class="opt-div border border-gray p-2 mb-2 icon-radio">
+        <label id="c" class="opt-div border border-gray p-2 mb-2 icon-radio">
             <span class="pe-2 span-1 text-black">C.</span>
             <span style="font-weight:500">{{$mcqs->c}}</span>
             <input type="radio" name="option" value="c" class="options">
             <i class="fa fa-circle-check"></i>
         </label>
-        <label class="opt-div border border-gray p-2 mb-2 icon-radio">
+        <label id="d" class="opt-div border border-gray p-2 mb-2 icon-radio">
             <span class="pe-2 span-1 text-black">D.</span>
             <span style="font-weight:500">{{$mcqs->d}}</span>
             <input type="radio" name="option" value="d" class="options">
@@ -125,4 +125,47 @@
     </div>
 </div>
 
+<script>
+    let radios=document.querySelectorAll('.options');
+    let mcqs=@json($mcqs);
+    console.log(mcqs);
+    radios.forEach(radio => {
+    radio.addEventListener("change", function () {
+      const selectedAnswer = this.value;
+      // Sabhi radio disable
+      //radios.forEach(r => r.disabled = true);
+        radios.forEach(r => {
+  if (r.value !== selectedAnswer) {
+    r.disabled = true;
+  }
+});
+        // Correct option green
+        if (selectedAnswer === mcqs.correct_ans) {
+              document.getElementById(selectedAnswer).classList.add('correct');
+        }
+
+        // Wrong selected option red
+        if (
+          selectedAnswer !== mcqs.correct_ans
+        ) {
+                document.getElementById(selectedAnswer).classList.add('incorrect');
+                document.getElementById(mcqs.correct_ans).classList.add('correct');
+        }
+      });
+    });
+
+    
+</script>
+<style>
+.correct {
+    background-color: #d4edda !important;
+    border-color: #28a745 !important;
+    color: #155724 !important;
+}
+.incorrect {
+    background-color: #f8d7da !important;
+    border-color: #dc3545 !important;
+    color: #721c24 !important;
+}
+</style>
 @endsection

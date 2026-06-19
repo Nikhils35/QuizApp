@@ -1,6 +1,72 @@
 @extends('welcome')
 @section('content')
 <style>
+    .content-wrapper {
+      flex: 1;
+      background-color: #f8f9fa;
+    }
+
+    /* demo page sections - just to show how footer adapts */
+    .hero-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+
+    .quiz-preview {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .quiz-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .card-f {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      width: 240px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+
+    .card-f i {
+      font-size: 2.2rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+    }
+
+    .card-f h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-soft {
+      background: #eef2ff;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      color: #2563eb;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 1rem;
+      text-decoration: none;
+    }
+
+    .btn-soft:hover {
+      background: #dfe7ff;
+    }
 .card-style {
     width: 150px;
     height: 150px;
@@ -120,7 +186,7 @@
 
 
 </style>
-<div>
+<div class="container">
     <x-searchBar></x-searchBar>
     <!-- ------------------------------------------------- -->
     <div class="mt-4">
@@ -203,7 +269,34 @@
         </div>
     </div>
 </div>
-
- <!-- <x-footer></x-footer> -->
-
+<div class="content-wrapper">
+  <section class="hero-section">
+    <div class="quiz-preview">
+      <h1>🧠 QuizApp</h1>
+      <p class="sub">Challenge your mind, track your progress, and have fun — all in one sleek platform.</p>
+      <div class="quiz-card">
+        <div class="card-f">
+          <i class="fas fa-brain"></i>
+          <h3>Trivia Blitz</h3>
+          <p>Test your general knowledge</p>
+          <a href="/cat_quizzes/{{$catagory[7]->id}}" class="btn-soft">Start Quiz →</a>
+        </div>
+        <div class="card-f">
+          <i class="fas fa-code"></i>
+          <h3>Tech Quiz</h3>
+          <p>Programming & Dev insights</p>
+          <a href="/cat_quizzes/{{$catagory[12]->id}}" class="btn-soft">Start Quiz →</a>
+        </div>
+        <div class="card-f">
+          <i class="fas fa-globe"></i>
+          <h3>Geography</h3>
+          <p>Explore world <br/> capitals</p>
+          <a href="/cat_quizzes/{{$catagory[3]->id}}" class="btn-soft">Start Quiz →</a>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: #4b5563;"><i class="fas fa-arrow-down"></i> Scroll down to see the premium footer</p>
+  </section>
+</div>
+<x-footer></x-footer>
 @endsection

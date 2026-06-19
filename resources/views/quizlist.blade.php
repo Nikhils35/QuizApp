@@ -16,9 +16,10 @@
             </tr>
         </thead>
         <tbody>
+            <?php $sn=1; ?>
             @foreach($quizzes as $quiz)
             <tr>
-                <td>{{ $quiz->count() }}</td>
+                <td><?php echo $sn; $sn++; ?></td>
                 <td>{{ $quiz->quiz }}</td>
                 
                 <td>
